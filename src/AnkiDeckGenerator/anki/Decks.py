@@ -13,5 +13,9 @@ class HomogeneousDeck:
     def add_note(self, note):
         self.deck.add_note(self.model.create_note(note))
 
+    def add_notes(self, notes: list):
+        for note in notes:
+            self.add_note(note)
+
     def write_to_file(self, file_name: str):
         self.deck.write_to_file(file_name)
