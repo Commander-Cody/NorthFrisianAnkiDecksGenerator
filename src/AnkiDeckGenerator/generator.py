@@ -8,7 +8,7 @@ def main():
     source_sheet = GoogleSpreadSheet(
         sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs'
     )
-    dataframe = PandasVocabularyData(source_sheet.get_data_from('FrascheUurde'))
+    dataframe = PandasVocabularyData(source_sheet.get_data_from('Lesebuch1Laks1'))
     model = SymmetricVocabularyNoteModel()
     deck = HomogeneousDeck(
         id = 2059396110,
