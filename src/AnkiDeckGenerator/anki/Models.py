@@ -37,18 +37,25 @@ class SymmetricVocabularyNoteModel(NoteModel):
                 note.word, 
                 note.meaning,
                 note.word_alternatives,
+                self._hidden_if_blank(note.word_alternatives),
                 note.word_examples, 
-                note.translated_examples
+                note.translated_examples,
+                self._hidden_if_blank(note.word_examples)
             ],
             guid = genanki.guid_for(note.word)
         )
+    
+    def _hidden_if_blank(self, string: str):
+        return "" if string.strip() else " hidden"
     
     def _create_anki_model(self):
         target_language_id = 'word'
         base_language_id = 'meaning'
         alternatives_id = 'alternatives'
+        alternatives_hidden_attribute_id = 'alternatives_hidden_attribute'
         target_language_examples_id = 'word_example'
         base_language_examples_id = 'example_translation'
+        examples_hidden_attribute_id = 'examples_hidden_attribute'
         note_css = """.card {
             font-family: arial;
             font-size: 20px;
@@ -65,19 +72,21 @@ class SymmetricVocabularyNoteModel(NoteModel):
                 {'name': target_language_id},
                 {'name': base_language_id},
                 {'name': alternatives_id},
+                {'name': alternatives_hidden_attribute_id},
                 {'name': target_language_examples_id},
-                {'name': base_language_examples_id}
+                {'name': base_language_examples_id},
+                {'name': examples_hidden_attribute_id}
             ],
             templates=[
                 {
                     'name': 'Card 1',
-                    'qfmt': '{{' + target_language_id + '}} (uk: {{' + alternatives_id + '}})<br><br>Baispal(e): {{' + target_language_examples_id + '}}',
-                    'afmt': '{{FrontSide}}<hr id="answer">{{' + base_language_id + '}}<br><br>Beispiel(e): {{' + base_language_examples_id + '}}'
+                    'qfmt': '{{' + target_language_id + '}}<span{{' + alternatives_hidden_attribute_id + '}}> (uk: {{' + alternatives_id + '}})</span><br><br><span{{' + examples_hidden_attribute_id + '}}>Baispal(e): {{' + target_language_examples_id + '}}</span>',
+                    'afmt': '{{FrontSide}}<hr id="answer">{{' + base_language_id + '}}<br><br><span{{' + examples_hidden_attribute_id + '}}>Beispiel(e): {{' + base_language_examples_id + '}}</span>'
                 },
                 {
                     'name': 'Card 2',
-                    'qfmt': '{{' + base_language_id + '}}<br><br>Beispiel(e): {{' + base_language_examples_id + '}}',
-                    'afmt': '{{FrontSide}}<hr id="answer">{{' + target_language_id + '}} (uk: {{' + alternatives_id + '}})<br><br>Baispal(e): {{' + target_language_examples_id + '}}'
+                    'qfmt': '{{' + base_language_id + '}}<br><br><span{{' + examples_hidden_attribute_id + '}}>Beispiel(e): {{' + base_language_examples_id + '}}</span>',
+                    'afmt': '{{FrontSide}}<hr id="answer">{{' + target_language_id + '}}<span{{' + alternatives_hidden_attribute_id + '}}> (uk: {{' + alternatives_id + '}})</span><br><br><span{{' + examples_hidden_attribute_id + '}}>Baispal(e): {{' + target_language_examples_id + '}}</span>'
                 }
             ],
             css=note_css
