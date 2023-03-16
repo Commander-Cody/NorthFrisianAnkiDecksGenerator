@@ -5,19 +5,19 @@ from anki.Models import SymmetricVocabularyNoteData
 
 
 @dataclass
-class GoogleSheet:
+class GoogleSpreadSheet:
     sheet_id: str
-    sheet_name: str
 
-    def get_url(self) -> str:
-        return f'https://docs.google.com/spreadsheets/d/{self.sheet_id}/gviz/tq?tqx=out:csv&sheet={self.sheet_name}'
+    def get_url_for(self, sheet_name: str) -> str:
+        return f'https://docs.google.com/spreadsheets/d/{self.sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
+
+    def get_data_from(self, sheet_name: str):
+        return pandas.read_csv(self.get_url_for(sheet_name))
 
 
-class PandasVocabularyGoogleSheet:
-
-    def __init__(self, sheet: GoogleSheet) -> None:
-        url = sheet.get_url()
-        self.df = pandas.read_csv(url)
+class PandasVocabularyData:
+    def __init__(self, dataframe) -> None:
+        self.df = dataframe
     
     def get_vocabulary_notes_data(self):
         result = []

@@ -1,16 +1,20 @@
 from anki.Models import SymmetricVocabularyNoteModel
 from anki.Decks import HomogeneousDeck
-from anki.pandasdata import PandasVocabularyGoogleSheet, GoogleSheet
+from anki.pandasdata import PandasVocabularyData, GoogleSpreadSheet
+
 
 
 def main():
-    source_sheet = GoogleSheet(
-        sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs',
-        sheet_name = 'FrascheUurde'
+    source_sheet = GoogleSpreadSheet(
+        sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs'
     )
-    dataframe = PandasVocabularyGoogleSheet(source_sheet)
+    dataframe = PandasVocabularyData(source_sheet.get_data_from('FrascheUurde'))
     model = SymmetricVocabularyNoteModel()
-    deck = HomogeneousDeck(2059396110, 'Frasche uurde', model)
+    deck = HomogeneousDeck(
+        id = 2059396110,
+        name = 'Frasche uurde',
+        model = model
+    )
     deck.add_notes(dataframe.get_vocabulary_notes_data())
     deck.write_to_file('vocabulary.apkg')
 
