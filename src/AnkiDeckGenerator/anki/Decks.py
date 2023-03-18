@@ -1,6 +1,6 @@
 import genanki
 
-from AnkiDeckGenerator.anki.Models import NoteModel
+from anki.Models import NoteModel
 
 
 class HomogeneousDeck:

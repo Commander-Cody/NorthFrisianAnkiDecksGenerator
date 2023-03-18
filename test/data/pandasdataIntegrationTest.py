@@ -5,7 +5,7 @@ import unittest
 # import sys
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
 
-from AnkiDeckGenerator.data.pandasdata import GoogleSpreadSheet
+from data.pandasdata import GoogleSpreadSheet
 
 
 class TestGoogleSheetUrl(unittest.TestCase):

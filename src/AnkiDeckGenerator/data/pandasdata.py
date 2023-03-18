@@ -1,7 +1,7 @@
 import pandas
 from dataclasses import dataclass
 
-from AnkiDeckGenerator.anki.Models import SymmetricVocabularyNoteData
+from anki.Models import SymmetricVocabularyNoteData
 
 
 @dataclass
