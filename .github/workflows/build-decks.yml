@@ -1,6 +1,6 @@
 # This workflow will run the project
 
-name: Python application
+name: Build decks
 
 on: workflow_dispatch
 
@@ -27,7 +27,7 @@ jobs:
       run: |
         python ./src/AnkiDeckGenerator/generator.py
     - name: Archive built decks
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-anki-decks
-          path: ./*.apkg
+      uses: actions/upload-artifact@v3
+      with:
+        name: generated-anki-decks
+        path: ./*.apkg
