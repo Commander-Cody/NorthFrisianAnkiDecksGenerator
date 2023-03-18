@@ -1,6 +1,6 @@
 from anki.Models import SymmetricVocabularyNoteModel
 from anki.Decks import HomogeneousDeck
-from anki.pandasdata import PandasVocabularyData, GoogleSpreadSheet
+from data.pandasdata import PandasVocabularyData, GoogleSpreadSheet
 
 
 
