@@ -1,5 +1,10 @@
 import unittest
 
+# fixes running the test in gitlab but there must be a better way
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+
 from AnkiDeckGenerator.data.pandasdata import GoogleSpreadSheet
 
 
