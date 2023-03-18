@@ -9,7 +9,7 @@ class HomogeneousDeck:
         self.deck = genanki.Deck(id, name)
         self.model = model
         self.notes = []
-    
+
     def add_note(self, note):
         self.deck.add_note(self.model.create_note(note))
 

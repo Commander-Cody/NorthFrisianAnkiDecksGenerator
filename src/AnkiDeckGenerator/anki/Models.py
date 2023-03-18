@@ -22,7 +22,7 @@ class SymmetricVocabularyNoteData:
 
 
 class SymmetricVocabularyNoteModel(NoteModel):
-    """Symmetric model for creating vocabulary notes, 
+    """Symmetric model for creating vocabulary notes,
     i.e. each data set also generates a note with 'word' and 'meaning' reversed"""
     def __init__(self) -> None:
         self.model = self._create_anki_model()
@@ -34,11 +34,11 @@ class SymmetricVocabularyNoteModel(NoteModel):
         return genanki.Note(
             model = self.model,
             fields = [
-                note.word, 
+                note.word,
                 note.meaning,
                 note.word_alternatives,
                 self._hidden_if_blank(note.word_alternatives),
-                note.word_examples, 
+                note.word_examples,
                 note.translated_examples,
                 self._hidden_if_blank(note.word_examples)
             ],
@@ -66,7 +66,7 @@ class SymmetricVocabularyNoteModel(NoteModel):
         """
 
         return genanki.Model(
-            1607392319, # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
+            1607392319,  # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
             'Vocabulary Model',
             fields=[
                 {'name': target_language_id},

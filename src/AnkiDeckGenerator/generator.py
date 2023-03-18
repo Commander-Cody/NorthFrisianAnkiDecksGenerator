@@ -3,7 +3,6 @@ from anki.Decks import HomogeneousDeck
 from data.pandasdata import PandasVocabularyData, GoogleSpreadSheet
 
 
-
 def main():
     source_sheet = GoogleSpreadSheet(
         sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs'
