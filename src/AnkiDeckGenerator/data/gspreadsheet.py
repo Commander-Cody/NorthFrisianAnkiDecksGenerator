@@ -1,10 +1,11 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-from AnkiDeckGenerator.anki.Models import SymmetricVocabularyNoteData
+from anki.Models import SymmetricVocabularyNoteData
+from interfaces import VocabularyData
 
 
-class AnkiDeckDefinitionSheet:
+class AnkiDeckDefinitionSheet(VocabularyData):
     scopes = [
         'https://www.googleapis.com/auth/spreadsheets.readonly',
         'https://www.googleapis.com/auth/drive'

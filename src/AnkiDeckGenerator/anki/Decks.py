@@ -1,19 +1,20 @@
 import genanki
 
 from anki.Models import NoteModel
+from interfaces import VocabularyData
 
 
 class HomogeneousDeck:
     """Homogeneous Deck, i.e. all notes are assumed to follow the same model"""
-    def __init__(self, id: int, name: str, model: NoteModel) -> None:
+    def __init__(self, id: int, name: str, model: NoteModel) -> None:  # NoteModel[NoteType]
         self.deck = genanki.Deck(id, name)
         self.model = model
         self.notes = []
 
-    def add_note(self, note):
+    def add_note(self, note):  # NoteType
         self.deck.add_note(self.model.create_note(note))
 
-    def add_notes(self, notes: list):
+    def add_notes(self, notes: list):  # list[NoteType]
         for note in notes:
             self.add_note(note)
     
