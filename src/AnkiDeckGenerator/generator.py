@@ -15,7 +15,7 @@ def create_sprachkurs1_vocabulary_deck():
     )
     deck = HomogeneousDeck(
         id = 2059396110,
-        name = 'Friesischer Sprachkurs Frasch 1',
+        name = 'Friesischer Sprachkurs - Frasch 1',
         model = SymmetricVocabularyNoteModel()
     )
     deck.add_notes_from_data(laks1_words)
