@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 from anki.htmlutils import var
+import dominate.tags as tags
+from dominate.util import text
 
 
 class NoteModel(ABC):
@@ -34,12 +36,19 @@ class SymmetricVocabularyNoteModel(NoteModel):
     base_language_examples_id = 'example_translation'
     examples_hidden_attribute_id = 'examples_hidden_attribute'
 
-    note_css = """.card {
+    note_css = """
+    .card {
         font-family: arial;
         font-size: 20px;
         text-align: center;
         color: black;
         background-color: white;
+    }
+    .hidden {
+        display: none;
+    }
+    .additional_info {
+        font-size: 0.75em;
     }
     """
     
@@ -98,7 +107,28 @@ class SymmetricVocabularyNoteModel(NoteModel):
         )
     
     def _create_target_language_info(self) -> str:
-        return var(self.target_language_id) + '<span ' + var(self.alternatives_hidden_attribute_id) + '> (uk: ' + var(self.alternatives_id) + ')</span><br><br><span ' + var(self.examples_hidden_attribute_id) + '>Baispal(e): ' + var(self.target_language_examples_id) + '</span>'
+        root = tags.div()
+        with root:
+            text(var(self.target_language_id))
+            with tags.span():
+                tags.attr(cls=var(self.alternatives_hidden_attribute_id) + ' additional_info')
+                tags.br()
+                tags.br()
+                text(' (uk: ' + var(self.alternatives_id) + ')')
+            tags.br()
+            tags.br()
+            with tags.span():
+                tags.attr(cls=var(self.examples_hidden_attribute_id) + ' additional_info')
+                text('Baispal(e): ' + var(self.target_language_examples_id))
+        return root.render()
     
     def _create_base_language_info(self) -> str:
-        return var(self.base_language_id) + '<br><br><span ' + var(self.examples_hidden_attribute_id) + '>Beispiel(e): ' + var(self.base_language_examples_id) + '</span>'
+        root = tags.div()
+        with root:
+            text(var(self.base_language_id))
+            tags.br()
+            tags.br()
+            with tags.span():
+                tags.attr(cls=var(self.examples_hidden_attribute_id) + ' additional_info')
+                text('Beispiel(e): ' + var(self.base_language_examples_id))
+        return root.render()
