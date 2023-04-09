@@ -1,11 +1,12 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from typing import List
 
 from anki.Models import SymmetricVocabularyNoteData
-from interfaces import VocabularyData
+from interfaces import AnkiNotesData
 
 
-class AnkiDeckDefinitionSheet(VocabularyData):
+class AnkiDeckDefinitionSheet(AnkiNotesData):
     scopes = [
         'https://www.googleapis.com/auth/spreadsheets.readonly',
         'https://www.googleapis.com/auth/drive'
@@ -17,12 +18,7 @@ class AnkiDeckDefinitionSheet(VocabularyData):
         file = gspread.authorize(credentials)
         self.workbook = file.open(name)
 
-    def get_vocabulary_notes_data(self):
+    def get_notes_data(self) -> List[SymmetricVocabularyNoteData]:
         sheet = self.workbook.sheet1
         # print(sheet.acell('A1').value)
-        return [SymmetricVocabularyNoteData(
-            word = sheet.acell('A2').value,
-            meaning = sheet.acell('B2').value,
-            word_examples = '',
-            translated_examples = ''
-        )]
+        return []

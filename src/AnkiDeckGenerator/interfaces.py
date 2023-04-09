@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
+from typing import TypeVar, Generic, List
 
-class VocabularyData(ABC):
+AnkiNoteData = TypeVar('AnkiNoteData')
+
+class AnkiNotesData(ABC, Generic[AnkiNoteData]):
     @abstractmethod
-    def get_vocabulary_notes_data(self) -> list:  # list[NoteType]
+    def get_notes_data(self) -> List[AnkiNoteData]:
         pass

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List
 
 from anki.Models import SymmetricVocabularyNoteData
-from interfaces import VocabularyData
+from interfaces import AnkiNotesData
 
 
 @dataclass
@@ -17,11 +17,11 @@ class GoogleSpreadSheet:
         return pandas.read_csv(self.get_url_for(sheet_name))
 
 
-class PandasVocabularyData(VocabularyData):
+class PandasVocabularyData(AnkiNotesData):
     def __init__(self, dataframe) -> None:
         self.df = dataframe
     
-    def get_vocabulary_notes_data(self) -> List[SymmetricVocabularyNoteData]:
+    def get_notes_data(self) -> List[SymmetricVocabularyNoteData]:
         result = []
         for ind in self.df.index:
             row = PandasVocabularyGoogleSheetRow(self.df, ind)
