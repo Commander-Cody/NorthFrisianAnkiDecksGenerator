@@ -1,7 +1,13 @@
 import genanki
+from abc import ABC, abstractmethod
 
-from anki.Models import NoteModel
 from interfaces import AnkiNotesData
+
+
+class NoteModel(ABC):
+    @abstractmethod
+    def create_note(self, note) -> genanki.Note:
+        pass
 
 
 class HomogeneousDeck:

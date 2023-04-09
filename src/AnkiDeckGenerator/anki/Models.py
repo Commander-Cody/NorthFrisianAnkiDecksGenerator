@@ -1,17 +1,11 @@
 import genanki
 # import yaml
-from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
+from anki.Decks import NoteModel
 from anki.htmlutils import var
 import dominate.tags as tags
 from dominate.util import text
-
-
-class NoteModel(ABC):
-    @abstractmethod
-    def create_note(self, note) -> genanki.Note:
-        pass
 
 
 @dataclass
