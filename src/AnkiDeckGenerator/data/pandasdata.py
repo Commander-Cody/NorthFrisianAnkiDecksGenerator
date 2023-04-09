@@ -18,29 +18,31 @@ class GoogleSpreadSheet:
 
 
 class PandasVocabularyData(AnkiNotesData):
-    def __init__(self, dataframe) -> None:
+    def __init__(self, dataframe, column_headings: SymmetricVocabularyNoteData) -> None:
         self.df = dataframe
+        self.column_headings = column_headings
     
     def get_notes_data(self) -> List[SymmetricVocabularyNoteData]:
         result = []
         for ind in self.df.index:
-            row = PandasVocabularyGoogleSheetRow(self.df, ind)
+            row = PandasVocabularyGoogleSheetRow(self.df, ind, self.column_headings)
             result.append(row.get_vocabulary_note_data())
         return result
 
 
 class PandasVocabularyGoogleSheetRow:
-    def __init__(self, dataframe, index) -> None:
+    def __init__(self, dataframe, index, column_headings: SymmetricVocabularyNoteData) -> None:
         self.dataframe = dataframe
         self.index = index
+        self.column_headings = column_headings
     
     def get_vocabulary_note_data(self):
         return SymmetricVocabularyNoteData(
-            word = self.get_column('Frasch uurd'),
-            meaning = self.get_column('Tjüsch ouerseeting'),
-            word_alternatives = self.get_column('Ålternatiiwe'),
-            word_examples = self.get_column('Frasche baispale'),
-            translated_examples = self.get_column('Tjüsche baispale'),
+            word = self.get_column(self.column_headings.word),
+            meaning = self.get_column(self.column_headings.meaning),
+            word_alternatives = self.get_column(self.column_headings.word_alternatives),
+            word_examples = self.get_column(self.column_headings.word_examples),
+            translated_examples = self.get_column(self.column_headings.translated_examples),
         )
     
     def get_column(self, name) -> str:

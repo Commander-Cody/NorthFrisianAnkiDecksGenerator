@@ -37,22 +37,24 @@ class SymmetricVocabularyNoteModel(NoteModel):
     examples_hidden_attribute_id = 'examples_hidden_attribute'
 
     note_css = """
-    .card {
-        font-family: arial;
-        font-size: 20px;
-        text-align: center;
-        color: black;
-        background-color: white;
-    }
-    .hidden {
-        display: none;
-    }
-    .additional_info {
-        font-size: 0.75em;
-    }
-    """
+        .card {
+            font-family: arial;
+            font-size: 20px;
+            text-align: center;
+            color: black;
+            background-color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .additional_info {
+            font-size: 0.8em;
+        }"""
     
-    def __init__(self) -> None:
+    def __init__(self, alternatives_description, examples_description_target, examples_description_base) -> None:
+        self.alternatives_description = alternatives_description
+        self.examples_description_target = examples_description_target
+        self.examples_description_base = examples_description_base
         self.model = self._create_anki_model()
     
     def create_note(self, note: SymmetricVocabularyNoteData):
@@ -114,12 +116,12 @@ class SymmetricVocabularyNoteModel(NoteModel):
                 tags.attr(cls=var(self.alternatives_hidden_attribute_id) + ' additional_info')
                 tags.br()
                 tags.br()
-                text(' (uk: ' + var(self.alternatives_id) + ')')
+                text(' (' + self.alternatives_description + ': ' + var(self.alternatives_id) + ')')
             tags.br()
             tags.br()
             with tags.span():
                 tags.attr(cls=var(self.examples_hidden_attribute_id) + ' additional_info')
-                text('Baispal(e): ' + var(self.target_language_examples_id))
+                text(self.examples_description_target + ': ' + var(self.target_language_examples_id))
         return root.render()
     
     def _create_base_language_info(self) -> str:
@@ -130,5 +132,5 @@ class SymmetricVocabularyNoteModel(NoteModel):
             tags.br()
             with tags.span():
                 tags.attr(cls=var(self.examples_hidden_attribute_id) + ' additional_info')
-                text('Beispiel(e): ' + var(self.base_language_examples_id))
+                text(self.examples_description_base + ': ' + var(self.base_language_examples_id))
         return root.render()
