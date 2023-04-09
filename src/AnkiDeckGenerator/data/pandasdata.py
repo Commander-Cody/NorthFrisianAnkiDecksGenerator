@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List
 
 from anki.Models import SymmetricVocabularyNoteData
-from interfaces import AnkiNotesData
+from anki.Decks import AnkiNotesData
 
 
 @dataclass
