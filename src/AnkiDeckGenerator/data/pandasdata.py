@@ -25,12 +25,12 @@ class PandasVocabularyData(AnkiNotesData):
     def get_notes_data(self) -> List[SymmetricVocabularyNoteData]:
         result = []
         for ind in self.df.index:
-            row = PandasVocabularyGoogleSheetRow(self.df, ind, self.column_headings)
+            row = PandasVocabularyDataRow(self.df, ind, self.column_headings)
             result.append(row.get_vocabulary_note_data())
         return result
 
 
-class PandasVocabularyGoogleSheetRow:
+class PandasVocabularyDataRow:
     def __init__(self, dataframe, index, column_headings: SymmetricVocabularyNoteData) -> None:
         self.dataframe = dataframe
         self.index = index
