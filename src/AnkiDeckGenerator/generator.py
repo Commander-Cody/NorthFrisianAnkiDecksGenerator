@@ -27,6 +27,7 @@ def create_sprachkurs1_vocabulary_deck():
         id = 2059396110,
         name = 'Friesischer Sprachkurs - Frasch 1',
         model = SymmetricVocabularyNoteModel(
+            id = 1607392319,  # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
             alternatives_description = 'uk',
             examples_description_target = 'Baispal(e)',
             examples_description_base = 'Beispiel(e)'

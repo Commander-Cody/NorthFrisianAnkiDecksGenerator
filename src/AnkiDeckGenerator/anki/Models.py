@@ -51,7 +51,8 @@ class SymmetricVocabularyNoteModel(NoteModel):
             font-size: 0.8em;
         }"""
     
-    def __init__(self, alternatives_description, examples_description_target, examples_description_base) -> None:
+    def __init__(self, id, alternatives_description, examples_description_target, examples_description_base) -> None:
+        self.id = id
         self.alternatives_description = alternatives_description
         self.examples_description_target = examples_description_target
         self.examples_description_base = examples_description_base
@@ -82,7 +83,7 @@ class SymmetricVocabularyNoteModel(NoteModel):
         card_front = '{{FrontSide}}<hr id="answer">'
 
         return genanki.Model(
-            1607392319,  # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
+            self.id,
             'Vocabulary Model',
             fields=[
                 {'name': self.target_language_id},
