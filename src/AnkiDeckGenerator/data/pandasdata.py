@@ -2,8 +2,8 @@ import pandas
 from dataclasses import dataclass
 from typing import List
 
-from anki.Models import SymmetricVocabularyNoteData
-from anki.Decks import AnkiNotesData
+from anki.models import SymmetricVocabularyNoteData
+from anki.decks import AnkiNotesData
 
 
 @dataclass

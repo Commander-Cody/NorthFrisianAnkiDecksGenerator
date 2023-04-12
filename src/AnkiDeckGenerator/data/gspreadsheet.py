@@ -2,8 +2,8 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from typing import List
 
-from anki.Models import SymmetricVocabularyNoteData
-from anki.Decks import AnkiNotesData
+from anki.models import SymmetricVocabularyNoteData
+from anki.decks import AnkiNotesData
 
 
 class AnkiDeckDefinitionSheet(AnkiNotesData):
