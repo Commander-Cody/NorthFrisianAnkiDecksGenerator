@@ -3,6 +3,15 @@ from anki.decks import HomogeneousDeck, NoteModel
 from data.pandasdata import PandasVocabularyData, GoogleSpreadSheet
 
 
+def frasch_from_german_symmetric_model() -> NoteModel:
+    return SymmetricVocabularyNoteModel(
+        id = 1607392319,  # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
+        alternatives_description = 'uk',
+        examples_description_target = 'Baispal(e)',
+        examples_description_base = 'Beispiel(e)'
+    )
+
+
 def create_sprachkurs1_vocabulary_deck():
     source_sheet = GoogleSpreadSheet(
         sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs'
@@ -26,12 +35,7 @@ def create_sprachkurs1_vocabulary_deck():
     deck = HomogeneousDeck(
         id = 2059396110,
         name = 'Friesischer Sprachkurs - Frasch 1',
-        model = SymmetricVocabularyNoteModel(
-            id = 1607392319,  # ID for Anki; generate with: import random; random.randrange(1 << 30, 1 << 31)
-            alternatives_description = 'uk',
-            examples_description_target = 'Baispal(e)',
-            examples_description_base = 'Beispiel(e)'
-        )
+        model = frasch_from_german_symmetric_model()
     )
     deck.add_notes_from_data(laks1_words)
     deck.add_notes_from_data(laks2_words)
