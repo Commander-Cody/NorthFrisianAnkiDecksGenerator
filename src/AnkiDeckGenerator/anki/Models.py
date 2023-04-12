@@ -1,11 +1,13 @@
+from dataclasses import dataclass
+
 import genanki
 # import yaml
-from dataclasses import dataclass
 
 from anki.Decks import NoteModel
 from anki.htmlutils import var
 import dominate.tags as tags
 from dominate.util import text
+
 
 
 @dataclass

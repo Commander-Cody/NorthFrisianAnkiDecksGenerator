@@ -3,7 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from typing import List
 
 from anki.Models import SymmetricVocabularyNoteData
-from interfaces import AnkiNotesData
+from anki.Decks import AnkiNotesData
 
 
 class AnkiDeckDefinitionSheet(AnkiNotesData):
