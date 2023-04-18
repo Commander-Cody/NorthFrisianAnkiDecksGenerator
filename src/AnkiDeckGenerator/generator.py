@@ -3,12 +3,11 @@ from anki.decks import HomogeneousDeck
 from data.pandasdata import PandasVocabularyData, GoogleSpreadSheet
 
 import vocabularymodels as vocabulary_models
+from vocabularydataprocessors import default_processor, lenient_processor
 
 
 def create_sprachkurs1_vocabulary_deck():
-    source_sheet = GoogleSpreadSheet(
-        sheet_id = '1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs'
-    )
+    source_sheet = GoogleSpreadSheet('1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs')
     column_headings = SymmetricVocabularyNoteData(
         word='Frasch uurd',
         meaning='Tjüsch ouerseeting',
@@ -20,14 +19,16 @@ def create_sprachkurs1_vocabulary_deck():
     deck = HomogeneousDeck(
         id = 2059396110,
         name = 'Friesischer Sprachkurs - Frasch 1',
-        model = vocabulary_models.frasch_from_german()
+        model = vocabulary_models.frasch_from_german(),
+        data_transform = default_processor
     )
     for i in range(1,4):
-        words_data = PandasVocabularyData(
+        partial_data_set = PandasVocabularyData(
             source_sheet.get_data_from(f'FriesischerSprachkurs1Laks{i}'),
             column_headings
         )
-        deck.add_notes_from_data(words_data)
+        deck.add_notes_from_data(partial_data_set)
+    
     deck.write_to_file('sprachkurs1-uurde.apkg')
 
 

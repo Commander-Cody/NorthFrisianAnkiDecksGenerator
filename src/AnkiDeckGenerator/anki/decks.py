@@ -19,13 +19,16 @@ class NoteModel(ABC, Generic[AnkiNoteData]):
 
 class HomogeneousDeck(Generic[AnkiNoteData]):
     """Homogeneous Deck, i.e. all notes are assumed to follow the same model"""
-    def __init__(self, id: int, name: str, model: NoteModel[AnkiNoteData]) -> None:
+    def __init__(self, id: int, name: str, model: NoteModel[AnkiNoteData], data_transform = lambda x : x) -> None:
         self.deck = genanki.Deck(id, name)
         self.model = model
         self.notes = []
+        self.data_transform = data_transform
 
     def add_note(self, note_data: AnkiNoteData):
-        self.deck.add_note(self.model.create_note(note_data))
+        prepared_data = self.data_transform(note_data)
+        if not prepared_data is None:
+            self.deck.add_note(self.model.create_note(note_data))
 
     def add_notes(self, notes: List[AnkiNoteData]):
         for note in notes:

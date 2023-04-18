@@ -27,8 +27,7 @@ class PandasVocabularyData(AnkiNotesData):
         for ind in self.df.index:
             row = PandasVocabularyDataRow(self.df, ind, self.column_headings)
             row_data = row.get_vocabulary_note_data()
-            if row_data.word.strip() or row_data.meaning.strip():
-                result.append(row_data)
+            result.append(row_data)
         return result
 
 
