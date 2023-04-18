@@ -24,8 +24,8 @@ class HomogeneousDeck(Generic[AnkiNoteData]):
         self.model = model
         self.notes = []
 
-    def add_note(self, note: AnkiNoteData):
-        self.deck.add_note(self.model.create_note(note))
+    def add_note(self, note_data: AnkiNoteData):
+        self.deck.add_note(self.model.create_note(note_data))
 
     def add_notes(self, notes: List[AnkiNoteData]):
         for note in notes:
