@@ -57,9 +57,35 @@ def create_sprachkurs1_vocabulary_deck_english():
     deck.write_to_file('languagecourse1-uurde.apkg')
 
 
+def create_sprachkurs1_vocabulary_deck_halifreesk():
+    source_sheet = GoogleSpreadSheet('1WThbHIfG1n0XsOx5lN47h0GI-EluMkFzc_h72JpsWLs')
+    column_headings = SymmetricVocabularyNoteData(
+        word='Halifreesk üürd',
+        meaning='Tjüsch ouerseeting',
+        word_alternatives='Alternatiawe',
+        word_examples='Halifreeske baispale',
+        translated_examples='Tjüsche baispale'
+    )
+
+    deck = HomogeneousDeck(
+        id = 2059396110,
+        name = 'Friesischer Sprachkurs - Halifreesk 1',
+        model = vocabulary_models.halifreesk_from_german(),
+        data_transform = lenient_processor
+    )
+    partial_data_set = PandasVocabularyData(
+        source_sheet.get_data_from(f'FriesischerSprachkurs1Laks1'),
+        column_headings
+    )
+    deck.add_notes_from_data(partial_data_set)
+    
+    deck.write_to_file('sprachkurs1-üürde.apkg')
+
+
 def main():
-    # create_sprachkurs1_vocabulary_deck()
-    create_sprachkurs1_vocabulary_deck_english()
+    create_sprachkurs1_vocabulary_deck()
+    # create_sprachkurs1_vocabulary_deck_english()
+    # create_sprachkurs1_vocabulary_deck_halifreesk()
 
 
 if __name__ == '__main__':
