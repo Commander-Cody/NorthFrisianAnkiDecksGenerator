@@ -69,7 +69,7 @@ class SymmetricVocabularyNoteModel(NoteModel):
                 note.translated_examples,
                 self._hidden_if_blank(note.word_examples)
             ],
-            guid = genanki.guid_for(note.word, note.meaning)
+            guid = genanki.guid_for(self.id, note.word, note.meaning)
         )
     
     def _hidden_if_blank(self, string: str):
