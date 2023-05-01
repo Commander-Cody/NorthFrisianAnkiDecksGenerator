@@ -22,10 +22,10 @@ def create_sprachkurs1_vocabulary_deck():
         model = vocabulary_models.frasch_from_german(),
         data_transform = default_processor
     )
-    for i in range(1,4):
+    for i in range(1,5):
         partial_data_set = PandasVocabularyData(
-            source_sheet.get_data_from(f'FriesischerSprachkurs1Laks{i}'),
-            column_headings
+            dataframe = source_sheet.get_data_from(f'FriesischerSprachkurs1Laks{i}'),
+            column_headings = column_headings
         )
         deck.add_notes_from_data(partial_data_set)
     
@@ -49,8 +49,8 @@ def create_sprachkurs1_vocabulary_deck_english():
         data_transform = lenient_processor
     )
     partial_data_set = PandasVocabularyData(
-        source_sheet.get_data_from(f'FriesischerSprachkurs1Laks1'),
-        column_headings
+        dataframe = source_sheet.get_data_from(f'FriesischerSprachkurs1Laks1'),
+        column_headings = column_headings
     )
     deck.add_notes_from_data(partial_data_set)
     
@@ -74,8 +74,8 @@ def create_sprachkurs1_vocabulary_deck_halifreesk():
         data_transform = lenient_processor
     )
     partial_data_set = PandasVocabularyData(
-        source_sheet.get_data_from(f'FriesischerSprachkurs1Laks1'),
-        column_headings
+        dataframe = source_sheet.get_data_from(f'FriesischerSprachkurs1Laks1'),
+        column_headings = column_headings
     )
     deck.add_notes_from_data(partial_data_set)
     
