@@ -14,7 +14,7 @@ class GoogleSpreadSheet:
         return f'https://docs.google.com/spreadsheets/d/{self.sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}'
 
     def get_data_from(self, sheet_name: str):
-        return pandas.read_csv(self.get_url_for(sheet_name))
+        return pandas.read_csv(self.get_url_for(sheet_name), na_filter=False)
 
 
 class PandasVocabularyData(AnkiNotesData):
