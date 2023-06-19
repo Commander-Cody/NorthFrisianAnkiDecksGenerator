@@ -109,10 +109,10 @@ def create_sprachkurs_copmlete_vocab_list_german():
 
 
 def main():
+    create_sprachkurs_copmlete_vocab_list_german()
     create_sprachkurs1_vocabulary_deck()
     # create_sprachkurs1_vocabulary_deck_english()
     # create_sprachkurs1_vocabulary_deck_halifreesk()
-    # create_sprachkurs_copmlete_vocab_list_german()
 
 
 if __name__ == '__main__':
