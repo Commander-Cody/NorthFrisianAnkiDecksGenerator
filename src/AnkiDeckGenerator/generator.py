@@ -22,7 +22,7 @@ def create_sprachkurs1_vocabulary_deck():
         model = vocabulary_models.frasch_from_german(),
         data_transform = data_processors.default_processor
     )
-    for i in range(1,5):
+    for i in range(1,6):
         partial_data_set = PandasVocabularyData(
             dataframe = source_sheet.get_data_from(f'FriesischerSprachkurs1Laks{i}'),
             column_headings = column_headings
